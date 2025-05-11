@@ -27,7 +27,6 @@ class CategoryController extends Controller
         // TODO: THERE'S SOME ERROR WITH STORING NEW ACCOUNT
         // TODO: input validation
         $attributes = request()->validate([
-            'type' => ['required'],
             'name' => ['required']
         ]);
 
@@ -37,7 +36,7 @@ class CategoryController extends Controller
         $category->user_id = Auth::id();
         $category->save();
         
-        return redirect()->intended('/accounts')->with('success', 'Konto aktualisiert');
+        return redirect()->intended('/categories')->with('success', 'Kategorie angelegt');
     }
 
     /**
@@ -61,18 +60,14 @@ class CategoryController extends Controller
     {
         // input validation
         $attributes = request()->validate([
-            'type' => ['required', 'numeric'],
-            'name' => ['required'],
-            'starting_amount' =>['numeric'],
+            'name' => ['required']
         ]);
-        
-        $attributes['starting_amount'] = $attributes['starting_amount'] *100;
-        
+
         // update
         $category->update($attributes);
 
         // redirect to page
-        return redirect()->intended('/accounts')->with('success', 'Konto aktualisiert');
+        return redirect()->intended('/categories')->with('success', 'Kategorie aktualisiert');
     }
 
     /**
@@ -84,6 +79,6 @@ class CategoryController extends Controller
         $category->delete();
 
         // redirect to page
-        return redirect()->intended('/accounts')->with('warning', 'Konto gelöscht');
+        return redirect()->intended('/categories')->with('success', 'Kategorie gelöscht');
     }
 }

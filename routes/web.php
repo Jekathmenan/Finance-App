@@ -64,15 +64,10 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/category/new', [CategoryController::class, 'edit'])->name('category.edit');
     Route::get('/category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     
-    Route::get('/category/new', [AccountsController::class, 'edit'])->name('category.edit');
-    Route::get('/category/{id}', [AccountsController::class, 'edit'])->name('category.edit');
-    /*
-    Route::post('/category', [AccountsController::class, 'store'])->name('category.store');
-    Route::patch('/category/{category}', [AccountsController::class, 'update'])->name('category.update');
-    Route::delete('/category/{category}', [AccountsController::class, 'destroy'])->name('category.delete');
-    */
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
     
-
+    Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.delete');
 });
 
 /**
