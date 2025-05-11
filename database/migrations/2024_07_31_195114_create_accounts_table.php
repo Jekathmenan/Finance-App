@@ -16,8 +16,8 @@ return new class extends Migration
             $table->smallInteger('type');
             $table->bigInteger('user_id');
             $table->string('name');
-            $table->decimal('starting_amount');
             $table->text('description');
+            $table->bigInteger('starting_amount');
             //$table->foreign('user_id')->references('users')->on('id');
             $table->timestamps();
         });
