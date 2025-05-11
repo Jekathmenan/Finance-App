@@ -47,7 +47,6 @@ Route::middleware(['guest'])->group(function () {
 Route::group(['middleware'=>'auth'], function () {
     // Accounts
     Route::get('/accounts', [AccountsController::class, 'create'])->name('accounts');
-    // TODO: SOME ERROR WITH THIS
     Route::get('/account/new', [AccountsController::class, 'edit'])->name('account.edit');
     Route::get('/account/{id}', [AccountsController::class, 'edit'])->name('account.edit');
 
