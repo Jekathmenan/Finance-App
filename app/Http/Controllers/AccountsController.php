@@ -57,7 +57,7 @@ class AccountsController extends Controller
     public function edit($id = null)
     {
         // find account
-        $account = $id == null ? null : Account::findMany($id)->where('users_id', Auth::user()->id)->first();
+        $account = $id == null ? null : Account::findMany($id)->where('user_id', Auth::user()->id)->first();
         
         // return account editing form
         return view('auth.accounts.accountform', [
