@@ -61,7 +61,8 @@ Route::group(['middleware'=>'auth'], function () {
 Route::group(['middleware'=>'auth'], function () {
     // Accounts
     Route::get('/categories', [CategoryController::class, 'create'])->name('categories');
-    // TODO: SOME ERROR WITH THIS
+    Route::get('/category/new', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::get('/category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     
     Route::get('/category/new', [AccountsController::class, 'edit'])->name('category.edit');
     Route::get('/category/{id}', [AccountsController::class, 'edit'])->name('category.edit');

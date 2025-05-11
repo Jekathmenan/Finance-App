@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $category = $id == null ? null : TransferCategory::findMany($id)->where('user_id', Auth::user()->id)->first();
         
         // return category editing form
-        return view('auth.category.categoryform', [
+        return view('auth.categories.categoryform', [
             'category' => $category
         ]);
     }
