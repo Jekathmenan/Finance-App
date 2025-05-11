@@ -29,7 +29,7 @@
                 <x-form.select name='accountTo' label='Konto nach' :options="$accounts" />
                 {{-- <x-form.input name='accountFrom' label='Von' /> 
                 <x-form.input name='accountTo' label='Nach' /> --}}
-                <x-form.textarea name='description' bezeichnung='Beschreibung' />
+                <x-form.textarea name='description' label='Beschreibung' />
 
                 <x-form.submit name='Anlegen' link="{{ route('transfers') }}" ltext='Zurück zur Übersicht?'
                     rtext='Zurück' />

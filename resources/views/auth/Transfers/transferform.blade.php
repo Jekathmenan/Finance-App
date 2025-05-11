@@ -30,7 +30,7 @@
                 <x-form.input name='category' value="{{ $transfer->category ?? '' }}" label='Kategorie' />
                 <x-form.input name='accountFrom' value="{{ $transfer->account_from ?? '' }}" label='Von' />
                 <x-form.input name='accountTo' value="{{ $transfer->account_to ?? '' }}" label='Nach' />
-                <x-form.textarea name='description' value="{{ $transfer->description ?? '' }}" bezeichnung='Beschreibung' />
+                <x-form.textarea name='description' value="{{ $transfer->description ?? '' }}" label='Beschreibung' />
                 {{-- <x-form.input name='name' value="{{ $account->name ?? '' }}" bezeichnung='Konto' />
                 <x-form.input name='starting_amount' value="{{ $account ? $account->starting_amount / 100 : '' }}"
                     bezeichnung='Anfangsbetrag' />
