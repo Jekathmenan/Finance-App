@@ -12,7 +12,7 @@ class Transfer extends Model
 
     protected $fillable = [
         'type', 'date', 'repeattype', 'amount', 'category', 
-        'account_from', 'account_to', 'users_id', 'note', 'description'
+        'account_from', 'account_to', 'user_id', 'note', 'description'
     ];
 
     public function accountFrom() 

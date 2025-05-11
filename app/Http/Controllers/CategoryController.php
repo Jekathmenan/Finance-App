@@ -34,7 +34,7 @@ class CategoryController extends Controller
         
         $category = new TransferCategory;
         $category->name = $request->name;
-        $category->users_id = Auth::id();
+        $category->user_id = Auth::id();
         $category->save();
         
         return redirect()->intended('/accounts')->with('success', 'Konto aktualisiert');
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function edit($id = null)
     {
         // find category
-        $category = $id == null ? null : TransferCategory::findMany($id)->where('users_id', Auth::user()->id)->first();
+        $category = $id == null ? null : TransferCategory::findMany($id)->where('user_id', Auth::user()->id)->first();
         
         // return category editing form
         return view('auth.category.categoryform', [

@@ -21,13 +21,13 @@ return new class extends Migration
             $table->unsignedBigInteger('category');
             $table->unsignedBigInteger('account_from');
             $table->unsignedBigInteger('account_to');
-            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('user_id');
 
             // Foreign key constraints
             $table->foreign('category')->references('id')->on('transfer_categories')->onDelete('cascade');
             $table->foreign('account_from')->references('id')->on('accounts')->onDelete('cascade');
             $table->foreign('account_to')->references('id')->on('accounts')->onDelete('cascade');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             // Additional fields
             $table->string('note')->nullable();

@@ -36,7 +36,7 @@ class TransfersController extends Controller
             ]);
         }
 
-        $transfer = $id == null ? null : Transfer::findMany($id)->where('users_id', Auth::user()->id)->first();
+        $transfer = $id == null ? null : Transfer::findMany($id)->where('user_id', Auth::user()->id)->first();
         
 
         // return transfer editing form
@@ -70,7 +70,7 @@ class TransfersController extends Controller
         $transfer->category = $request->category;
         $transfer->account_from = $request->accountFrom;
         $transfer->account_to = $request->accountTo;
-        $transfer->users_id = Auth::id();
+        $transfer->user_id = Auth::id();
         $transfer->description = $request->description;
 
         $transfer->save();
