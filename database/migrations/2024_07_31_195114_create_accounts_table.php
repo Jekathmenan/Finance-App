@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->string('name');
             $table->decimal('starting_amount');
-            $table->text('decription');
+            $table->text('description');
             //$table->foreign('user_id')->references('users')->on('id');
             $table->timestamps();
         });
