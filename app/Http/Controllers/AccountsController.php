@@ -37,7 +37,7 @@ class AccountsController extends Controller
         $account->name = $request->name;
         $account->starting_amount = $request->starting_amount * 100;
         $account->description = $request->description;
-        $account->users_id = Auth::id();
+        $account->user_id = Auth::id();
         $account->save();
         
         return redirect()->intended('/accounts')->with('success', 'Konto aktualisiert');
