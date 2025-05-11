@@ -1,0 +1,1 @@
+<label for="type" class="block mb-2 text-sm font-medium text-[#181818] dark:text-white">{{ $name }}</label>
