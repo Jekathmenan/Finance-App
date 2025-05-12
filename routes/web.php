@@ -46,6 +46,12 @@ Route::middleware(['guest'])->group(function () {
  * Routes required to perform crud operations on core data.
  */
 Route::group(['middleware'=>'auth'], function () {
+    // Coredata management page
+    // Todo: Implement a core data management page where each of the core data (categories, accounts and transfertypes) can be managed 
+    Route::get('/transfer-types', [CoredataController::class, 'createTransferTypes'])->name('transfer-types');
+
+    // Todo: Migrate all the coredata controller into CoredataController
+
     // Accounts
     Route::get('/accounts', [AccountsController::class, 'create'])->name('accounts');
     Route::get('/account/new', [AccountsController::class, 'edit'])->name('account.edit');
