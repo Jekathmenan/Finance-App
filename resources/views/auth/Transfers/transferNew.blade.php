@@ -14,7 +14,6 @@
                 @csrf
                 @isset($transfer)
                     @method('PATCH')
-                    Transfer is set
                 @endisset
 
                 <x-form.input name='type' label='Typ' required='required' />
@@ -22,13 +21,10 @@
                 <x-form.input name='date' label='Datum' />
                 <x-form.input name='repeattype' label='Wiederholungstyp' />
                 <x-form.input name='amount' label='Betrag' />
-                {{-- <x-form.input name='category' label='Kategorie' /> --}}
 
                 <x-form.select name='category' label='Kategorie' :options="$categories" />
                 <x-form.select name='accountFrom' label='Konto von' :options="$accounts" />
                 <x-form.select name='accountTo' label='Konto nach' :options="$accounts" />
-                {{-- <x-form.input name='accountFrom' label='Von' /> 
-                <x-form.input name='accountTo' label='Nach' /> --}}
                 <x-form.textarea name='description' label='Beschreibung' />
 
                 <x-form.submit name='Anlegen' link="{{ route('transfers') }}" ltext='Zurück zur Übersicht?'

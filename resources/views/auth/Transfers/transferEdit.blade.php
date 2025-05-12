@@ -17,7 +17,6 @@
                 @csrf
                 @isset($transfer)
                     @method('PATCH')
-                    Transfer is set
                 @endisset
 
                 <x-form.input name='type' value="{{ $transfer->type ?? '' }}" label='Typ' required='required' />
@@ -27,7 +26,8 @@
                 <x-form.input name='repeattype' value="{{ $transfer->repeattype ?? '' }}" label='Wiederholungstyp' />
                 <x-form.input name='amount' value="{{ $transfer->amount ? $transfer->amount / 100 : '' }}"
                     label='Betrag' />
-                <x-form.input name='category' value="{{ $transfer->category ?? '' }}" label='Kategorie' />
+                <x-form.select name='category' label='Kategorie' :options="$categories" />
+
                 <x-form.input name='accountFrom' value="{{ $transfer->account_from ?? '' }}" label='Von' />
                 <x-form.input name='accountTo' value="{{ $transfer->account_to ?? '' }}" label='Nach' />
                 <x-form.textarea name='description' value="{{ $transfer->description ?? '' }}" label='Beschreibung' />
