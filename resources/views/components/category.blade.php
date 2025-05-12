@@ -3,12 +3,11 @@
     <div
         class="max-w-xl border-2 border-gray-600 px-4 py-6 rounded-lg transform transition duration-500 hover:scale-105">
         <h2 class="title-font font-medium text-3xl text-gray-900 dark:text-white">
-
-
+            {{ $category?->name ?? 'Neue Kategorie' }}
         </h2>
-        <p class="leading-relaxed dark:text-white">
-            {{ $category->name ?? 'Neue Kategorie' }}
-        </p>
+        {{-- <p class="leading-relaxed dark:text-white">
+            {{ $category->name ?? 'Neues Konto' }}
+        </p> --}}
         <div class="btns flex flex-wrap">
             <div class="edit py-2 flex-1">
                 <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 
