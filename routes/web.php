@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransfersController;
+use App\Http\Controllers\CoredataController;
 use App\Models\Account;
 
 /*
@@ -42,7 +43,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 /**
- * Routes required to perform crud operations on Accounts.
+ * Routes required to perform crud operations on core data.
  */
 Route::group(['middleware'=>'auth'], function () {
     // Accounts
@@ -53,13 +54,8 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/account', [AccountsController::class, 'store'])->name('account.store');
     Route::patch('/account/{account}', [AccountsController::class, 'update'])->name('account.update');
     Route::delete('/account/{account}', [AccountsController::class, 'destroy'])->name('account.delete');
-});
 
-/**
- * Routes required to perform crud operations on TransferCategories.
- */
-Route::group(['middleware'=>'auth'], function () {
-    // Accounts
+    // Categories
     Route::get('/categories', [CategoryController::class, 'create'])->name('categories');
     Route::get('/category/new', [CategoryController::class, 'edit'])->name('category.edit');
     Route::get('/category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
@@ -68,13 +64,26 @@ Route::group(['middleware'=>'auth'], function () {
     
     Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.delete');
+
+    // Transfertypes
+    Route::get('/transfer-types', [CoredataController::class, 'createTransferTypes'])->name('transfer-types');
+    Route::get('/transfer-type/new', [CoredataController::class, 'editTransferTypes'])->name('transfer-types.edit');
+    Route::get('/transfer-type/{id}', [CoredataController::class, 'editTransferTypes'])->name('transfer-types.edit');
+
+    Route::post('/transfer-type', [CoredataController::class, 'storeTransferType'])->name('transfer-type.store');
+    Route::patch('/transfer-type/{transferType}', [CoredataController::class, 'updateTransferType'])->name('transfer-type.update');
+    Route::delete('/transfer-type/{transferType}', [CoredataController::class, 'destroyTransferType'])->name('transfer-type.delete');
 });
+
+
+
 
 /**
  * Routes required to perform crud operations on Transactions.
  */
 Route::group(['middleware'=>'auth'], function () {
     // Transactions
+    // TODO: Rename this to transactions
     Route::get('/transfers', [TransfersController::class, 'index'])->name('transfers');
     Route::get('/transfer/new', [TransfersController::class, 'edit'])->name('transfers.new');
     Route::get('/transfer/{id}', [TransfersController::class, 'edit'])->name('transfers.edit');
@@ -116,10 +125,19 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 /**
- * Admin panel Routes
+ * Profile related routes
  */
 Route::middleware(['auth'])->group(function () {
     // Profile where user can change password, enter his data and maybe view dashboards
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
+    
+    // Dashboard: Total balances across accounts, recent transfers, maybe a chart.
 });
 
+/**
+ * Admin user Routes
+ */
+Route::middleware(['admin'])->group(function () {
+    // Page where admin user can set certain rules e.g. user management
+    
+});
