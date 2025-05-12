@@ -30,7 +30,7 @@ class TransfersController extends Controller
         // dd($transfer_categories);
         if ($id == null) {
 
-            return view('auth.transfers.transferNew', [
+            return view('auth.transfers.transferform', [
                 'categories' => $transfer_categories,
                 'accounts' => $accounts
             ]);
@@ -42,6 +42,7 @@ class TransfersController extends Controller
         // return transfer editing form
         return view('auth.transfers.transferform', [
             'transfer' => $transfer,
+            'accounts' => $accounts,
             'categories' => $transfer_categories
         ]);
     }
