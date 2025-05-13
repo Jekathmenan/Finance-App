@@ -15,6 +15,7 @@ class RegisterController extends Controller
 
     public function store() {
         // validating User Input
+        $usersCount = User::all()->count();
         $attr = request()->validate([
             'name' => ['required', 'min:4', 'max:255'],
             'username' => [Rule::unique('users', 'username'), 'required', 'max:255'],
@@ -22,6 +23,8 @@ class RegisterController extends Controller
             'password' => ['required', 'min:8', 'max:15', 'confirmed']
         ]);
 
+        // First user ever created should get the superadmin status
+        $attr['role'] = $usersCount == 0 ? 'Superadmin' : 'User';
         // creating user
         $user = User::create($attr);
 
