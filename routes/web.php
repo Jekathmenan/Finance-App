@@ -47,11 +47,13 @@ Route::middleware(['guest'])->group(function () {
  */
 Route::group(['middleware'=>'auth'], function () {
     // Coredata management page
+    Route::get('/core-data', [CoredataController::class, 'create'])->name('core-data');
+
     // Todo: Implement a core data management page where each of the core data (categories, accounts and transfertypes) can be managed 
-    Route::get('/transfer-types', [CoredataController::class, 'createTransferTypes'])->name('transfer-types');
+    
 
     // Todo: Migrate all the coredata controller into CoredataController
-
+    
     // Accounts
     Route::get('/accounts', [AccountsController::class, 'create'])->name('accounts');
     Route::get('/account/new', [AccountsController::class, 'edit'])->name('account.edit');

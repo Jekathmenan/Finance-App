@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class CoredataController extends Controller
 {
     /**
+     * 
+     */
+    public function create () {
+        return view('auth.coredata.overview'); 
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function createTransferTypes()

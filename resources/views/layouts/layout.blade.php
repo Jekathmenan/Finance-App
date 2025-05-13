@@ -37,8 +37,7 @@
 
                     @auth
                         {{-- Should only be seen by logged in users --}}
-                        <li><a class="hover:text-gray-500" href="{{ route('categories') }}">Kategorien</a></li>
-                        <li><a class="hover:text-gray-500" href="{{ route('accounts') }}">Konten</a></li>
+                        <li><a class="hover:text-gray-500" href="{{ route('core-data') }}">Stammdaten</a></li>
                         <li><a class="hover:text-gray-500" href="{{ route('transfers') }}">Buchung</a></li>
                     @endauth
                 </ul>
