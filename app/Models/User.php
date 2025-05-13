@@ -11,7 +11,13 @@ class User extends Authenticatable
     use HasFactory;
     protected $guarded = [];
 
-    public function setPasswordAttribute($value) {
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function isAdmin()
+    {
+        return strtoupper($this->role) === "ADMIN" || strtoupper($this->role) === "SUPERADMIN";
     }
 }
