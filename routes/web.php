@@ -19,6 +19,7 @@ use App\Models\Account;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -37,23 +38,23 @@ Route::middleware(['guest'])->group(function () {
 
     // register routes
     Route::get('register', [RegisterController::class, 'create'])
-    ->name('register');
+        ->name('register');
     Route::post('register', [RegisterController::class, 'store'])
-    ->name('register');
+        ->name('register');
 });
 
 /**
  * Routes required to perform crud operations on core data.
  */
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     // Coredata management page
     Route::get('/core-data', [CoredataController::class, 'create'])->name('core-data');
 
     // Todo: Implement a core data management page where each of the core data (categories, accounts and transfertypes) can be managed 
-    
+
 
     // Todo: Migrate all the coredata controller into CoredataController
-    
+
     // Accounts
     Route::get('/accounts', [AccountsController::class, 'create'])->name('accounts');
     Route::get('/account/new', [AccountsController::class, 'edit'])->name('account.edit');
@@ -67,9 +68,9 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/categories', [CategoryController::class, 'create'])->name('categories');
     Route::get('/category/new', [CategoryController::class, 'edit'])->name('category.edit');
     Route::get('/category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    
+
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-    
+
     Route::patch('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.delete');
 
@@ -89,7 +90,7 @@ Route::group(['middleware'=>'auth'], function () {
 /**
  * Routes required to perform crud operations on Transactions.
  */
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     // Transactions
     // TODO: Rename this to transactions
     Route::get('/transfers', [TransfersController::class, 'index'])->name('transfers');
@@ -104,10 +105,10 @@ Route::group(['middleware'=>'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     // Transactions
     // Default Transactionspage
-        // Here are all Transactions listed (grouped by Date)
-        // Each Transaction is clickable and on Click a PopUp-Component is loaded with the clicked transactions data
-        // There are 3 transaction types INCOME, EXPENSE, TRANSFER --> Income and Expense concern one account only and do either add or subtract the given amount to/from the account
-        /*
+    // Here are all Transactions listed (grouped by Date)
+    // Each Transaction is clickable and on Click a PopUp-Component is loaded with the clicked transactions data
+    // There are 3 transaction types INCOME, EXPENSE, TRANSFER --> Income and Expense concern one account only and do either add or subtract the given amount to/from the account
+    /*
         
         Table structure: 
             transactions:
@@ -138,7 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware(['auth'])->group(function () {
     // Profile where user can change password, enter his data and maybe view dashboards
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
-    
+
     // Dashboard: Total balances across accounts, recent transfers, maybe a chart.
 });
 
@@ -147,5 +148,5 @@ Route::middleware(['auth'])->group(function () {
  */
 Route::middleware(['admin'])->group(function () {
     // Page where admin user can set certain rules e.g. user management
-    
+    Route::get('/test', [TransfersController::class, 'index'])->name('test');
 });
