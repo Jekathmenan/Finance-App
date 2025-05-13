@@ -5,16 +5,16 @@
 @section('body')
     @if ($data->count() == 0)
         New Transfer type
-        <x-coredata url="transfer-type/new" type="Buchungstyp" />
+        <x-coredata url="/transfer-type/new" type="Buchungstyp" />
     @else
         <section class="text-gray-700 body-font">
             <div class="m-6 container px-5 py-24 mx-6 ">
                 <div class="m-6 flex flex-wrap -m-4 text-center">
                     {{-- rendering a card to add a new transfertype --}}
-                    <x-coredata url="transfer-type/new" type="Buchungstyp" />
+                    <x-coredata url="/transfer-type/new" type="Buchungstyp" />
                     @foreach ($data as $data)
                         {{-- rendering account component for each account --}}
-                        <x-coredata :data="$data" url="transfer-type" type="Buchungstyp" />
+                        <x-coredata :data="$data" url="/transfer-type" type="Buchungstyp" />
                     @endforeach
                 </div>
             </div>
