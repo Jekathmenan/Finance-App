@@ -11,10 +11,10 @@
             <div class="m-6 container px-5 py-24 mx-6 ">
                 <div class="m-6 flex flex-wrap -m-4 text-center">
                     {{-- rendering a card to add a new account --}}
-                    <x-account url="account/new" />
+                    <x-account url="/account/new" />
                     @foreach ($accounts as $acc)
                         {{-- rendering account component for each account --}}
-                        <x-account :account="$acc" :url="'account/' . $acc->id" />
+                        <x-account :account="$acc" url="/account/{{ $acc->id }}" />
                     @endforeach
                 </div>
             </div>
