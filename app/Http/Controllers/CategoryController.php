@@ -79,6 +79,6 @@ class CategoryController extends Controller
         $category->delete();
 
         // redirect to page
-        return redirect()->intended('/categories')->with('success', 'Kategorie gelöscht');
+        return redirect()->intended('/categories')->with('warning', 'Kategorie gelöscht');
     }
 }

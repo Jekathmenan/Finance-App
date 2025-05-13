@@ -105,7 +105,7 @@ class TransfersController extends Controller
         
         // update
         $transfer->update($attributes);
-        return redirect()->intended('/transfers')->with('success', 'Transfer aktualisiert');
+        return redirect()->intended('/transfers')->with('warning', 'Transfer aktualisiert');
     }
 
     /**
