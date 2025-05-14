@@ -102,6 +102,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/transfer/{transfer}', [TransfersController::class, 'destroy'])->name('transfer.delte');
 });
 
+/**
+ * Admin user Routes
+ */
+Route::middleware(['admin'])->group(function () {
+    // Page where admin user can set certain rules e.g. user management
+    Route::get('/admin-panel', [AdminPanelController::class, 'createAdminPanel'])->name('admin-panel');
+
+    Route::get('/users', [AdminPanelController::class, 'showUsers'])->name('users');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     // Transactions
     // Default Transactionspage
