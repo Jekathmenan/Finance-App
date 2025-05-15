@@ -19,7 +19,7 @@
                     <th scope="col" class="px-6 py-3">
                         <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 
                             rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none text-white bg-blue-700"
-                            href="{{ route('transfers.new') }}">
+                            href="{{ route('user.new') }}">
                             +
                         </a>
                     </th>
@@ -40,7 +40,7 @@
                         <td class="px-6 py-4">
                             <a class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 
                             rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none text-white bg-blue-700"
-                                href="#{{-- /edit-user/{{ $user->id }} --}}">Edit</a>
+                                href="/user/{{ $user->id }}">Edit</a>
                         </td>
                     </tr>
                 @endforeach

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransfersController;
 use App\Http\Controllers\CoredataController;
@@ -84,9 +85,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/transfer-type/{transferType}', [CoredataController::class, 'destroyTransferType'])->name('transfer-type.delete');
 });
 
-
-
-
 /**
  * Routes required to perform crud operations on Transactions.
  */
@@ -110,6 +108,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin-panel', [AdminPanelController::class, 'createAdminPanel'])->name('admin-panel');
 
     Route::get('/users', [AdminPanelController::class, 'showUsers'])->name('users');
+    Route::get('/user/new', [AdminPanelController::class, 'editUser'])->name('user.new');
+    Route::get('/user/{id}', [AdminPanelController::class, 'editUser'])->name('user.edit');
+
+    Route::post('/user', [AdminPanelController::class, 'storeUser'])->name('user.store');
+    Route::patch('/user/{user}', [TransfersController::class, 'updateUser'])->name('user.update');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -151,12 +154,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 
     // Dashboard: Total balances across accounts, recent transfers, maybe a chart.
-});
-
-/**
- * Admin user Routes
- */
-Route::middleware(['admin'])->group(function () {
-    // Page where admin user can set certain rules e.g. user management
-    Route::get('/test', [TransfersController::class, 'index'])->name('test');
 });
