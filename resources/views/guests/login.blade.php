@@ -32,7 +32,7 @@
                     </ul>
                 @endif
                 <div class="flex items-center justify-between">
-                    <a href="{{ route('forgotpassword') }}"
+                    <a href="{{ route('forgotPassword') }}"
                         class="text-sm font-medium text-[#181818] hover:underline dark:text-primary-500">Passwort
                         vergessen?</a>
                 </div>
