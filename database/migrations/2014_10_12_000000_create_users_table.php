@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->text('reset_challenge')->nullable();
+            $table->integer('status');
             $table->rememberToken();
             $table->timestamps();
         });
