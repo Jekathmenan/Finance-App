@@ -112,7 +112,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/user/{id}', [AdminPanelController::class, 'editUser'])->name('user.edit');
 
     Route::post('/user', [AdminPanelController::class, 'storeUser'])->name('user.store');
-    Route::patch('/user/{user}', [TransfersController::class, 'updateUser'])->name('user.update');
+    Route::patch('/user/{user}', [AdminPanelController::class, 'updateUser'])->name('user.update');
 });
 
 Route::group(['middleware' => 'auth'], function () {

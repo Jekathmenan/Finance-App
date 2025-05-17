@@ -58,4 +58,23 @@ class AdminPanelController extends Controller
         // redirecting to home page
         return redirect('/users')->with('success', 'Your account has been created.');
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateUser(Request $request, User $user)
+    {
+        // TODO: Input validation
+        $attributes = request()->validate([
+            'name' => ['required'],
+            'username' => ['required'],
+            'email' => ['required', 'email']
+        ]);
+
+        //$attributes['date'] = date("Y-m-d", strtotime($attributes['date']));
+
+        // update
+        $user->update($attributes);
+        return redirect()->intended('/users')->with('warning', 'Benutzer aktualisiert');
+    }
 }
