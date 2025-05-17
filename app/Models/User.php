@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = ['name', 'username', 'email', 'role', 'password'];
+    protected $fillable = ['name', 'username', 'email', 'role', 'password', 'reset_challenge', 'status'];
 
     public function setPasswordAttribute($value)
     {
