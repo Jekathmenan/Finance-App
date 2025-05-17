@@ -35,13 +35,22 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [SessionController::class, 'store'])->name('login');
 
     // Forgot Password option
-    Route::get('/forgotpassword', [SessionController::class, 'resetPassword'])->name('forgotpassword'); // not implemented correctly
+    Route::get('/forgot-password', [RegisterController::class, 'resetPasswordInit'])->name('forgotPassword');
+    Route::post('/forgot-password', [SessionController::class, 'resetPasswordInit'])->name('forgotPassword');
+    Route::get('/confirm-reset/{code}/{code2}', [RegisterController::class, 'resetPassword'])->name('forgotPasswordConfirmed');
 
     // register routes
     Route::get('register', [RegisterController::class, 'create'])
         ->name('register');
     Route::post('register', [RegisterController::class, 'store'])
         ->name('register');
+
+    Route::get('/confirm/{code}', [RegisterController::class, 'confirmAccount'])->name('confirm-account');
+});
+
+Route::middleware(['confirmed'])->group(function () {
+
+    Route::post('/confirm-reset', [SessionController::class, 'resetPassword'])->name('forgotPasswordConfirmed');
 });
 
 /**
