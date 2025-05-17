@@ -17,17 +17,16 @@ class TransfersController extends Controller
     {
         // Get all Accounts
         $transfers = Transfer::with(['category', 'accountFrom'])->get();
-        
+
         return view('auth.transfers.overview', [
             'transfers' => $transfers
-        ]); 
+        ]);
     }
 
-    public function edit ($id = null) 
+    public function edit($id = null)
     {
         $transfer_categories = TransferCategory::all();
         $accounts = Account::all();
-        // dd($transfer_categories);
         if ($id == null) {
 
             return view('auth.transfers.transferform', [
@@ -37,7 +36,6 @@ class TransfersController extends Controller
         }
 
         $transfer = $id == null ? null : Transfer::findMany($id)->where('user_id', Auth::user()->id)->first();
-        
 
         // return transfer editing form
         return view('auth.transfers.transferform', [
@@ -61,7 +59,6 @@ class TransfersController extends Controller
     public function store(Request $request)
     {
         // TODO: Input validation and tests
-
         $transfer = new Transfer;
         $transfer->type = $request->type;
         $transfer->note = $request->note;
@@ -87,8 +84,6 @@ class TransfersController extends Controller
         //
     }
 
-    
-
     /**
      * Update the specified resource in storage.
      */
@@ -102,7 +97,7 @@ class TransfersController extends Controller
         ]);
 
         $attributes['date'] = date("Y-m-d", strtotime($attributes['date']));
-        
+
         // update
         $transfer->update($attributes);
         return redirect()->intended('/transfers')->with('warning', 'Transfer aktualisiert');
