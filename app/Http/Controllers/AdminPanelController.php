@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminPanelController extends Controller
 {
@@ -52,11 +53,26 @@ class AdminPanelController extends Controller
         // First user ever created should get the superadmin status
         $attr['role'] = $usersCount == 0 ? 'Superadmin' : 'User';
         $attr['password'] = null;
+        $attr['status'] = 0;
         // creating user
         $user = User::create($attr);
+        $email = $user->username;
+
+        $messageData = [
+            'email' => $email,
+            'name' => $user->name,
+        ];
+
+        Mail::send(
+            'mail.new_user',
+            $messageData,
+            function ($message) use ($email) {
+                $message->to($email)->subject('Account created for you');
+            }
+        );
 
         // redirecting to home page
-        return redirect('/users')->with('success', 'Your account has been created.');
+        return redirect('/users')->with('success', 'User account has been created.');
     }
 
     /**
