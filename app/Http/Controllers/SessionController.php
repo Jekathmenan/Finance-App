@@ -117,6 +117,7 @@ class SessionController extends Controller
 
         $user->save();
 
+        // remove session variable confirmed
         Session::pull('confirmed', 'default');
 
         if ($user === null || $user->status == -1) {

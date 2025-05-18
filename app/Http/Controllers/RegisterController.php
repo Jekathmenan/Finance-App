@@ -24,13 +24,12 @@ class RegisterController extends Controller
     {
         $reset_challenge = base64_decode($code);
         $email = base64_decode($code2);
-        // dd($user);
+
         $user = User::where('email', $email)->first();
 
         if ($user->reset_challenge == $reset_challenge) {
-            // $request->session()->put('confirmed', 'true');
+            // Set session varible confirmed
             Session::put('confirmed', 'true');
-            //dd('setting Session id ' . Session::get('confirmed'));
             return view('guests.reset_password_form', [
                 'username' => $email
             ]);
