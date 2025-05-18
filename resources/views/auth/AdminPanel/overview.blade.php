@@ -8,6 +8,7 @@
             <div class="m-6 flex flex-wrap -m-4 text-center">
                 {{-- rendering a card to add a new transfertype --}}
                 <x-coredata.card name="Benutzerverwaltung" url="/users/" />
+                <x-coredata.card name="Buchungsimport" url="/transfers/import/" />
             </div>
         </div>
     </section>
