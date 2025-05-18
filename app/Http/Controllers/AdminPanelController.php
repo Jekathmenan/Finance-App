@@ -40,6 +40,15 @@ class AdminPanelController extends Controller
         ]);
     }
 
+    private function rand_char($length)
+    {
+        $random = '';
+        for ($i = 0; $i < $length; $i++) {
+            $random .= chr(mt_rand(33, 126));
+        }
+        return $random;
+    }
+
     public function storeUser()
     {
         // validating User Input
@@ -54,23 +63,31 @@ class AdminPanelController extends Controller
         $attr['role'] = $usersCount == 0 ? 'Superadmin' : 'User';
         $attr['password'] = null;
         $attr['status'] = 0;
+        $code = $this->rand_char(25);
+        $attr['reset_challenge'] = $code;
+
         // creating user
         $user = User::create($attr);
+        $user->reset_challenge = $code;
+        $user->save();
         $email = $user->username;
 
+        //
         $messageData = [
             'email' => $email,
             'name' => $user->name,
+            'code' => base64_encode($code),
+            'code2' => base64_encode($user->username)
         ];
 
         Mail::send(
-            'mail.new_user',
+            'mail.confirm_pw_reset',
             $messageData,
             function ($message) use ($email) {
                 $message->to($email)->subject('Account created for you');
             }
         );
-
+        //dd($code, base64_encode($code), base64_decode(base64_encode($code)));
         // redirecting to home page
         return redirect('/users')->with('success', 'User account has been created.');
     }

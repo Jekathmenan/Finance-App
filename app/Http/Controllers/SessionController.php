@@ -111,6 +111,10 @@ class SessionController extends Controller
         $user->password = $attributes['password'];
         $user->reset_challenge = null;
 
+        if ($user->status == -1) {
+            $user->status = 1;
+        }
+
         $user->save();
 
         Session::pull('confirmed', 'default');
