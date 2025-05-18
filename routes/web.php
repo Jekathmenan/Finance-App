@@ -1,14 +1,15 @@
 <?php
 
+use App\Models\Account;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AccountsController;
-use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TransfersController;
 use App\Http\Controllers\CoredataController;
-use App\Models\Account;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransfersController;
+use App\Http\Controllers\AdminPanelController;
+use App\Http\Controllers\ImportTransfersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,10 @@ Route::middleware(['admin'])->group(function () {
 
     Route::post('/user', [AdminPanelController::class, 'storeUser'])->name('user.store');
     Route::patch('/user/{user}', [AdminPanelController::class, 'updateUser'])->name('user.update');
+
+    // Simple Import adapter 
+    Route::get('/transfers/import', [ImportTransfersController::class, 'showForm'])->name('transfers.import.form');
+    Route::post('/transfers/import', [ImportTransfersController::class, 'import'])->name('transfers.import');
 });
 
 Route::group(['middleware' => 'auth'], function () {
