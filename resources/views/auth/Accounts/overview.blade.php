@@ -4,7 +4,7 @@
 @endsection
 @section('body')
     @if ($accounts->count() == 0)
-        <x-account url="account/new" />
+        <x-account url="/account/new" />
     @else
         {{-- <div class="lg:grid lg:grid-cols-3 md:grid md:grid-cols-3 sm:grid sm:grid-cols-2 "> --}}
         <section class="text-gray-700 body-font">
