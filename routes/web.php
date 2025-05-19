@@ -7,6 +7,7 @@ use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoredataController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransfersController;
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\ImportTransfersController;
@@ -108,6 +109,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/transfer', [TransfersController::class, 'store'])->name('transfer.store');
     Route::patch('/transfer/{transfer}', [TransfersController::class, 'update'])->name('transfer.update');
     Route::delete('/transfer/{transfer}', [TransfersController::class, 'destroy'])->name('transfer.delte');
+
+    Route::get('/dashboard', [DashboardController::class, 'createAccounts'])->name('dashboard');
 });
 
 /**

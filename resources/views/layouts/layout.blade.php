@@ -39,7 +39,7 @@
                         {{-- Should only be seen by logged in users --}}
                         <li><a class="hover:text-gray-500" href="{{ route('core-data') }}">Stammdaten</a></li>
                         <li><a class="hover:text-gray-500" href="{{ route('transfers') }}">Buchung</a></li>
-                        <li><a class="hover:text-gray-500" href="#">Dashboard</a></li>
+                        <li><a class="hover:text-gray-500" href="{{ route('dashboard') }}">Dashboard</a></li>
                         @if (auth()->user()->isAdmin())
                             {{-- Should only be seen by admin users --}}
                             <li><a class="hover:text-gray-500" href="{{ route('admin-panel') }}">Admin</a></li>

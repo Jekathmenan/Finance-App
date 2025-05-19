@@ -1,4 +1,4 @@
-@props(['name', 'url' => null])
+@props(['name', 'value' => '', 'url' => null])
 <a class="p-4 md:w-1/4 sm:w-1/2 w-full" href="{{ $url }}">
     <card>
         <div
@@ -6,6 +6,8 @@
 
             <p class="leading-relaxed dark:text-white">
                 {{ $name }}
+                <br>
+                {{ $value }}
             </p>
         </div>
     </card>
