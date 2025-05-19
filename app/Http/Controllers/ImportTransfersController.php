@@ -39,8 +39,6 @@ class ImportTransfersController extends Controller
                 'user_id' => 'required|integer'
             ]);
 
-
-
             if ($validator->fails()) {
                 $errors[] = "Row " . ($index + 2) . ": " . implode(', ', $validator->errors()->all());
                 //dd('validator failed');
@@ -51,7 +49,7 @@ class ImportTransfersController extends Controller
                 'type' => $data['type'],
                 'date' => $data['date'],
                 'repeattype' => $data['repeattype'],
-                'amount' => $data['amount'],
+                'amount' => $data['amount'] * 100,
                 'category' => $data['category'],
                 'account_from' => $data['account_from'],
                 'account_to' => $data['account_to'],
